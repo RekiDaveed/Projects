@@ -18,6 +18,11 @@ button {
     border-width: 1px;
     font-weight: 700;
     font-size: large;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: gray!important;
 }
 #btn-container {
     display: grid;
@@ -25,7 +30,7 @@ button {
     width: 250px;
     height: 280px;
     border-width: 1px;
-    gap: 10px;
+    gap: 5px;
     padding-left: 10px;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -37,14 +42,19 @@ button {
     padding-right: 10px;
     text-align: right;
     align-items: center;
-    border-radius: 7px;
+    border-radius: 5px;
     padding-top: 50px;
     padding-bottom: 50px;
     border-width: 1px;
+    background-color: black;
+    color: white;
+    outline: none;
 }
 
 #Full-cal {
     border: solid;
     border-radius: 6px;
     border-width: 1px;
+    background-color: rgba(0, 0, 0, 0.37);
 }
+
