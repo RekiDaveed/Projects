@@ -24,6 +24,11 @@ button {
 button:hover {
     background-color: gray!important;
 }
+
+button:active {
+    background-color: black;
+    color: white;
+}
 #btn-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
