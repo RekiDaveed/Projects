@@ -1,28 +1,79 @@
-// cal.js
+let resultElement = document.getElementById("Result");
+let currentInput = "0";
+let currentOperator = "";
+let previousInput = "";
 
-// Get references to the result input field and all buttons
-const resultInput = document.getElementById('Result');
-const buttons = document.querySelectorAll('#btn-container button');
+// Clears the screen
+function clearResult() {
+    currentInput = "0";
+    previousInput = "";
+    currentOperator = "";
+    updateDisplay();
+}
 
-// Add event listeners to all buttons
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        const buttonText = button.textContent;
+// Updates the screen display
+function updateDisplay() {
+    resultElement.textContent = currentInput;
+}
 
-        // Handle different button actions
-        if (buttonText === 'C') {
-            // Clear the result input
-            resultInput.value = '';
-        } else if (buttonText === '=') {
-            // Evaluate the expression and display the result
-            try {
-                resultInput.value = eval(resultInput.value);
-            } catch (error) {
-                resultInput.value = 'Error';
+// Appends a number to the current input
+function appendNumber(number) {
+    if (currentInput === "0") {
+        currentInput = number.toString();
+    } else {
+        currentInput += number.toString();
+    }
+    updateDisplay();
+}
+
+// Appends a decimal point (if not already present)
+function appendDecimal() {
+    if (!currentInput.includes(".")) {
+        currentInput += ".";
+        updateDisplay();
+    }
+}
+
+// Sets the operator for calculation
+function setOperator(operator) {
+    if (currentOperator !== "") {
+        calculate(); // Calculate before changing operator
+    }
+    previousInput = currentInput;
+    currentInput = "0";
+    currentOperator = operator;
+    updateDisplay();
+}
+
+// Performs the calculation based on the current operator
+function calculate() {
+    let result;
+    let prev = parseFloat(previousInput);
+    let current = parseFloat(currentInput);
+
+    switch (currentOperator) {
+        case "+":
+            result = prev + current;
+            break;
+        case "-":
+            result = prev - current;
+            break;
+        case "*":
+            result = prev * current;
+            break;
+        case "/":
+            if (current === 0) {
+                result = "Error"; // Prevent division by zero
+            } else {
+                result = prev / current;
             }
-        } else {
-            // Append the button's text to the result input
-            resultInput.value += buttonText;
-        }
-    });
-});
+            break;
+        default:
+            return; // No operator, do nothing
+    }
+
+    currentInput = result.toString();
+    currentOperator = "";
+    previousInput = "";
+    updateDisplay();
+}

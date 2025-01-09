@@ -8,27 +8,27 @@
 </head>
 <body>
     <div id="Full-cal">
-    <div id="Result-container"> <input id="Result" type="text" placeholder=""> </div>
+    <div id="Result-container"> <p id="Result"> Text Output Here </p> </div>
     <div id="btn-container">   
-            <button style="background-color: orange;"> * </button> 
-            <button style="background-color: orange;"> / </button> 
-            <button style="background-color: orange;"> - </button> 
-            <button style="background-color: orange;"> + </button>
-            <button> 9 </button>
-            <button> 8 </button>
-            <button> 7 </button>
-            <button> 6 </button>
-            <button> 5 </button>
-            <button> 4 </button>
-            <button> 3 </button>
-            <button> 2 </button>
-            <button> 1 </button>
-            <button> 0 </button>
-            <button> . </button>
-            <button style="background-color:green"> = </button>
-            <button style="background-color: red"> C </button>
+            <button style="background-color: orange;" onclick="setOperator('*')"> * </button> 
+            <button style="background-color: orange;" onclick="setOperator('/')"> / </button> 
+            <button style="background-color: orange;" onclick="setOperator('-')"> - </button> 
+            <button style="background-color: orange;" onclick="setOperator('+')"> + </button>
+            <button onclick="appendNumber(9)">9</button>
+            <button onclick="appendNumber(8)">8</button>
+            <button onclick="appendNumber(7)">7</button>
+            <button onclick="appendNumber(6)">6</button>
+            <button onclick="appendNumber(5)">5</button>
+            <button onclick="appendNumber(4)">4</button>
+            <button onclick="appendNumber(3)"> 3 </button>
+            <button onclick="appendNumber(2)"> 2 </button>
+            <button onclick="appendNumber(1)"> 1 </button>
+            <button onclick="appendNumber(0)"> 0 </button>
+            <button onclick="appendDecimal()"> . </button>
+            <button style="background-color:green" onclick="calculate()"> = </button>
+            <button style="background-color: red" onclick="clearResult()"> C </button>
     </div>
     </div>
+    <script src="/Calculator/cal.js"></script>
 </body>
-<script src="/Calculator/cal.js"></script>
 </html>
