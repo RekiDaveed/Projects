@@ -1,1 +1,1 @@
-This is a Calculator i made with basic html css and js, using only functions
+This is a Calculator i made with basic html css and js, using  functions
