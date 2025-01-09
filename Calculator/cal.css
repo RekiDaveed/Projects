@@ -13,8 +13,8 @@ body {
     background-color: #f5f5f5;
 }
 button {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-width: 1px;
     font-weight: 700;
     font-size: large;
@@ -36,8 +36,9 @@ button:active {
     height: 280px;
     border-width: 1px;
     gap: 5px;
-    padding-left: 10px;
-    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 5px;
+    padding-top: 6px;
 }   
 
 #Result {
@@ -53,6 +54,8 @@ button:active {
     background-color: black;
     color: white;
     outline: none;
+    letter-spacing: normal;
+    overflow: hidden;
 }
 
 #Full-cal {
