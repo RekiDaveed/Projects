@@ -23,11 +23,13 @@ button {
 
 button:hover {
     background-color: gray!important;
+    transition: 0.2ms;
 }
 
 button:active {
     background-color: black;
     color: white;
+    transition: 0.2ms
 }
 #btn-container {
     display: grid;
