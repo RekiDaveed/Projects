@@ -117,39 +117,38 @@
             
         }
 
+        const Computerchoices = computerChoice();
         function computerChoice(){
             const Computerchoices = ['Rock', 'Paper', 'Scissors'];
             const randomIndex = Math.floor(Math.random() * Computerchoices.length);
             return Computerchoices[randomIndex];
-        }
-
-        function playermove(choice){
+        }        function playermove(choice){
         if (playermove){
-        if (choice === computerChoice()){
-            alert(`You choose ${choice} , Computer choose ${computerChoice()} It\'s a tie`);
+            const ComputerPick = computerChoice();
+            console.log(computerChoice());
+
+        if (choice === ComputerPick){
+            alert(`You choose ${choice} , Computer choose ${ComputerPick} It\'s a tie`);
         }
-        else if (choice == 'Rock' && computerChoice() == 'Scissors'){
-            alert(`You choose ${choice} , Computer choose ${computerChoice()} You win`);
+        else if (choice == 'Rock' && ComputerPick == 'Scissors'){
+            alert(`You choose ${choice} , Computer choose ${ComputerPick} You win`);
         }
-        else if (choice == 'Rock' && computerChoice() == 'Paper'){
-            alert(`You choose ${choice} , Computer choose ${computerChoice()} You lose`);
+        else if (choice == 'Rock' && ComputerPick == 'Paper'){
+            alert(`You choose ${choice} , Computer choose ${ComputerPick} You lose`);
         }
-        else if (choice == 'Scissors' && computerChoice() == 'Paper'){
-            alert(`You choose ${choice} , Computer choose ${computerChoice()} You win`);
+        else if (choice == 'Scissors' && ComputerPick == 'Paper'){
+            alert(`You choose ${choice} , Computer choose ${ComputerPick} You win`);
         }
-        else if (choice == 'Scissors' && computerChoice() == 'Rock'){
-            alert(`You choose ${choice} , Computer choose ${computerChoice()} You Lose`);
+        else if (choice == 'Scissors' && ComputerPick == 'Rock'){
+            alert(`You choose ${choice} , Computer choose ${ComputerPick} You Lose`);
         }
-        else if (choice == 'Paper' && computerChoice() == 'Rock'){
-            alert(`You choose ${choice} , Computer choose ${computerChoice()} You Win`);
+        else if (choice == 'Paper' && ComputerPick == 'Rock'){
+            alert(`You choose ${choice} , Computer choose ${ComputerPick} You Win`);
         }
-        else if (choice == 'Paper' && computerChoice() == 'Scissors'){
-            alert(`You choose ${choice} , Computer choose ${computerChoice()} You Lose`);
+        else if (choice == 'Paper' && ComputerPick == 'Scissors'){
+            alert(`You choose ${choice} , Computer choose ${ComputerPick} You Lose`);
         }
 }   }
-
-        console.log(`Choice: ${playermove}, Computer pick: ${computerChoice}`);
-
     </script>
 </body>
 </html>
