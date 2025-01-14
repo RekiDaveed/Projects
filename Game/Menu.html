@@ -13,6 +13,7 @@
         background-position: center;
         background-repeat: no-repeat; 
         height: 100vh;
+        font-weight: 700;
     }
 
     button {
@@ -41,11 +42,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 14px;
 
     }
 
     #menu {
         display: flex;
+        flex-direction: column;
         width: 300px;
         height: 400px;
         justify-content: center;
@@ -69,10 +72,10 @@
 
     #ComputerMode-style {
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
         gap: 4px;
+        
     }
 
     #game-btn {
@@ -80,11 +83,27 @@
         height: 40px;
         
     }
+
+    #Scoreboard {
+        display: block !important;
+        border: solid;
+        border-color: aliceblue;
+        margin-top: 15px;
+        align-items: center;
+        width: 100% -2px;
+        border-radius: 5px;
+        padding-left: 40px;
+        color: white;
+        font-weight: 900;
+        font-family: 'Courier New', Courier, monospace;
+        border-width: 1px;
+        padding-bottom: 15px;
+    }
     </style>
 </head>
 <body>
     <div id="menu-container"> 
-    <div id="menu">
+    <div id="menu">>
 
     <button id="StartGame" onclick="StartGame()">Start Game</button>
         <div id="hidden">
@@ -99,7 +118,12 @@
                     <button id="game-btn" onclick="playermove('Rock')"  > Rock </button>
                     <button id="game-btn" onclick="playermove('Paper')"  > Paper </button>
                     <button id="game-btn" onclick="playermove('Scissors')"  > Scissors </button>
-                </div>    
+            </div>   
+                <div id="Scoreboard">        
+                    <p id="player-score">  Player score : </p>
+                    <p id="computer-score">  Computer score : </p>
+                    <button onclick="resetscore()"> Reset score </button>
+                </div>
         </div>
     </div>
     </div>
@@ -125,30 +149,54 @@
         }        function playermove(choice){
         if (playermove){
             const ComputerPick = computerChoice();
-            console.log(computerChoice());
+            console.log(ComputerPick);
 
         if (choice === ComputerPick){
-            alert(`You choose ${choice} , Computer choose ${ComputerPick} It\'s a tie`);
+            alert(`You choose ${choice} , Computer choose ${ComputerPick}, Its a tie`);
         }
         else if (choice == 'Rock' && ComputerPick == 'Scissors'){
-            alert(`You choose ${choice} , Computer choose ${ComputerPick} You win`);
+            alert(`You choose ${choice} , Computer choose ${ComputerPick}, You win`);
+            pscore = pscore + 1;
+            document.getElementById('player-score').textContent = (`Player score : ${pscore}`);
         }
         else if (choice == 'Rock' && ComputerPick == 'Paper'){
-            alert(`You choose ${choice} , Computer choose ${ComputerPick} You lose`);
+            alert(`You choose ${choice} , Computer choose ${ComputerPick}, Computer win`);
+            cscore = cscore + 1;
+            document.getElementById('computer-score').textContent = (`Computer score : ${cscore}`);
         }
         else if (choice == 'Scissors' && ComputerPick == 'Paper'){
-            alert(`You choose ${choice} , Computer choose ${ComputerPick} You win`);
+            alert(`You choose ${choice} , Computer choose ${ComputerPick}, You win`);
+            pscore = pscore + 1;
+            document.getElementById('player-score').textContent = (`Player score : ${pscore}`);
         }
         else if (choice == 'Scissors' && ComputerPick == 'Rock'){
-            alert(`You choose ${choice} , Computer choose ${ComputerPick} You Lose`);
+            alert(`You choose ${choice} , Computer choose ${ComputerPick}, Computer win`);
+            cscore = cscore + 1;
+            document.getElementById('computer-score').textContent = (`Computer score : ${cscore}`);
+
         }
         else if (choice == 'Paper' && ComputerPick == 'Rock'){
-            alert(`You choose ${choice} , Computer choose ${ComputerPick} You Win`);
+            alert(`You choose ${choice} , Computer choose ${ComputerPick}, You Win`);
+            pscore = pscore + 1;
+            document.getElementById('player-score').textContent = (`Player score : ${pscore}`);
         }
         else if (choice == 'Paper' && ComputerPick == 'Scissors'){
-            alert(`You choose ${choice} , Computer choose ${ComputerPick} You Lose`);
+            alert(`You choose ${choice} , Computer choose ${ComputerPick}, Computer Wins`);
+            cscore = cscore + 1;
+            document.getElementById('computer-score').textContent = (`Computer score : ${cscore}`);
+            
         }
 }   }
+
+        let pscore = 0;
+        let cscore = 0;
+
+        function resetscore(){
+            pscore = 0;
+            cscore = 0;
+            document.getElementById('player-score').textContent = (`Player score : ${pscore}`);
+            document.getElementById('computer-score').textContent = (`Computer score : ${cscore}`);
+        }
     </script>
 </body>
 </html>
