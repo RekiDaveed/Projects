@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Rock Paper Scissors </title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url(/Images/242d42_373d05e0dade4c56bf8bb796e8ef0286~mv2.gif);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat; 
+        height: 100vh;
+    }
+
+    button {
+        width: 170px;
+        height: 60px;
+        font-size: 15px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        border-radius: 5px;
+        border-width: 1px;
+    }
+
+    button:hover {
+        background-color: black;
+        color: cyan;
+    }
+    button:active {
+        background-color: gray;
+        color: cyan;
+    }
+    #hidden {
+        display: none;
+    }
+
+    #hidden-style {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    #menu {
+        display: flex;
+        width: 300px;
+        height: 400px;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.7);
+        background: none repeat;
+        box-sizing: content-box;
+        
+    }
+
+    #menu-container {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;  
+    }
+
+    #ComputerMode {
+        display: none;
+    }
+
+    #ComputerMode-style {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+    }
+
+    #game-btn {
+        width: 90px;
+        height: 40px;
+        
+    }
+    </style>
+</head>
+<body>
+    <div id="menu-container"> 
+    <div id="menu">
+
+    <button id="StartGame" onclick="StartGame()">Start Game</button>
+        <div id="hidden">
+            <div id="hidden-style">
+    <button onclick="computer()"> Vs Computer </button>
+    <button onclick="player()"> Vs Player </button> 
+            </div>
+        </div>
+
+        <div id="ComputerMode">
+                <div id="ComputerMode-style"> 
+                    <button id="game-btn" onclick="playermove('Rock')"  > Rock </button>
+                    <button id="game-btn" onclick="playermove('Paper')"  > Paper </button>
+                    <button id="game-btn" onclick="playermove('Scissors')"  > Scissors </button>
+                </div>    
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function StartGame(){
+            document.getElementById('hidden').style.display = 'block';
+            document.getElementById('StartGame').style.display = 'none';
+        }
+
+        function computer(){
+            document.getElementById('ComputerMode').style.display = 'block';
+            document.getElementById('hidden').style.display = 'none';
+            document.getElementById('StartGame').style.display = 'none';
+            
+        }
+
+        function computerChoice(){
+            const Computerchoices = ['Rock', 'Paper', 'Scissors'];
+            const randomIndex = Math.floor(Math.random() * Computerchoices.length);
+            return Computerchoices[randomIndex];
+        }
+
+        function playermove(choice){
+        if (playermove){
+        if (choice === computerChoice()){
+            alert(`You choose ${choice} , Computer choose ${computerChoice()} It\'s a tie`);
+        }
+        else if (choice == 'Rock' && computerChoice() == 'Scissors'){
+            alert(`You choose ${choice} , Computer choose ${computerChoice()} You win`);
+        }
+        else if (choice == 'Rock' && computerChoice() == 'Paper'){
+            alert(`You choose ${choice} , Computer choose ${computerChoice()} You lose`);
+        }
+        else if (choice == 'Scissors' && computerChoice() == 'Paper'){
+            alert(`You choose ${choice} , Computer choose ${computerChoice()} You win`);
+        }
+        else if (choice == 'Scissors' && computerChoice() == 'Rock'){
+            alert(`You choose ${choice} , Computer choose ${computerChoice()} You Lose`);
+        }
+        else if (choice == 'Paper' && computerChoice() == 'Rock'){
+            alert(`You choose ${choice} , Computer choose ${computerChoice()} You Win`);
+        }
+        else if (choice == 'Paper' && computerChoice() == 'Scissors'){
+            alert(`You choose ${choice} , Computer choose ${computerChoice()} You Lose`);
+        }
+}   }
+
+        console.log(`Choice: ${playermove}, Computer pick: ${computerChoice}`);
+
+    </script>
+</body>
+</html>
