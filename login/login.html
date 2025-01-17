@@ -13,16 +13,19 @@
         <p style="text-align: start; color: grey; font-size: 14px;"> Please enter your details </p>
         <br>
         <label for="email" style="display: block; margin-right: 190px; margin-bottom: 3px;"> Email address </label>
-        <div> <input type="email" style="width: 290px; height: 28px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; outline: none; padding-left: 5px;"> </div>
+        <div> <input id="validgmail" type="gmail" style="width: 290px; height: 28px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px;  padding-left: 5px;"> </div>
         <br>
         <label for="password" style="display: block; margin-right: 220px; margin-bottom: 3px;"> Password </label>
-        <div> <input id="pass-input" type="password" style="width: 290px; height: 28px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; outline: none; padding-left: 5px;"> </div>
+        <div> <input id="pass-input" placeholder="Enter strong password" type="password" style="width: 290px; height: 28px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; outline: none; padding-left: 5px;"></div>
         <div style="text-align: start; margin-top: 2px;"> <input type="checkbox" onclick="showpassword()"> Show password </div>
+        <br>
+        <p id="erroremail" style="color: red; display: none;"> Enter valid email </p>
+        <p id="errorpassword" style="color: red; display: none;" > Enter valid password </p>
         <br>
         <input type="checkbox"> Remember password </input>
         <br>
         <br>
-        <div> <button id="sign-in"> Sign in </button> </div>
+        <div> <button id="sign-in" onclick="login()"> Sign in </button> </div>
         <br>
         <p> <a href="/login/resetpassword.html"> Forgot Password ? </a> </p>
         <br>
@@ -31,9 +34,61 @@
     </div>
     <script src="https://kit.fontawesome.com/a7238d1282.js" crossorigin="anonymous"></script>
     <script>
-        showpassword(){
-        const pass = document.querySelector('#pass-input').textContent;
-};
+    function showpassword() {
+        let inputform = document.querySelector('#pass-input');
+        if (inputform.type === 'password') {
+            inputform.type = 'text';
+        } else {
+            inputform.type = 'password';
+        }
+    }
+
+    function validgmail(){
+        const email = document.querySelector('#validgmail');
+        let isValid = true;
+        if (email.value.includes('@gmail.com')) {
+        email.style.display = 'none';
+        erroremail.style.display = 'none';
+    }   else {
+        erroremail.display = 'block';
+        erroremail.style.display = 'block';
+        email.style.border = '1px solid red';
+        setTimeout(() => {
+            email.style.border = '';
+        }, 5000); // 
+    }return isValid;
+}
+    function strongpassword(){
+        const password = document.querySelector('#pass-input');
+        let isValid = true;
+        if (password.value.length > 8){
+            errorpassword.style.display = 'none';
+            password.style.border = '';
+        } else {
+            errorpassword.style.display = 'block';
+            password.style.border = '1px solid red';
+            setTimeout(() => {
+            password.style.border = 'none';
+        }, 5000); // 
+        }
+        return isValid;
+    }
+
+    function login(event){
+        event.preventDefault(); 
+        const isPasswordValid = strongpassword(event);
+        const isEmailValid = validgmail(event);
+
+        if (isPasswordValid && isEmailValid) {
+        console.log('Form submitted successfully.');
+        
+        return true; 
+        } else {
+
+        console.log('Form contains errors.');
+        return false; 
+        }
+    }
     </script>
 </body>
 </html>
