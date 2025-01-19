@@ -14,27 +14,27 @@
             <br>
             <label for="validgmail" style="display: block; margin-right: 190px; margin-bottom: 3px;">Email address</label>
             <div>
-                <input id="validgmail" type="" style="width: 290px; height: 28px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; padding-left: 5px;">
+                <input id="validgmail" type="email" placeholder="John.doe@gmail.com" style="width: 290px; height: 29px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; padding-left: 5px;">
             </div>
             <br>
             <label for="pass-input" style="display: block; margin-right: 220px; margin-bottom: 3px;">Password</label>
             <div>
-                <input id="pass-input" placeholder="Enter strong password" type="password" style="width: 290px; height: 28px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; outline: none; padding-left: 5px;">
+                <input id="pass-input" placeholder="Enter password 8 characters minimum" type="password" style="width: 290px; height: 29px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; outline: none; padding-left: 5px;">
             </div>
             <div style="text-align: start; margin-top: 2px;">
                 <input type="checkbox" onclick="showpassword()"> Show password
             </div>
             <br>
-            <p id="erroremail" style="color: red; display: none;">Enter valid email</p>
-            <p id="errorpassword" style="color: red; display: none;">Enter valid password</p>
+            <p id="erroremail" style="color: red; display: none;">Enter valid email.</p>
+            <p id="errorpassword" style="color: red; display: none;">Enter valid password.</p>
             <br>
-            <input type="checkbox"> Remember password
+            <input type="checkbox" id="rememberpass" onclick="rememberpassword()"> Remember password
             <br><br>
             <div>
                 <button id="sign-in" type="submit">Sign in</button>
             </div>
             <br>
-            <p style="color: red; display: none;" id="general-error">Error, check details and try again</p>
+            <p style="color: red; display: none;" id="general-error">Error, check details and try again.</p>
             <br>
             <p><a href="/login/resetpassword.html">Forgot Password?</a></p>
             <br>
@@ -56,15 +56,18 @@
 
             if (email.value.includes('@gmail.com')) {
                 erroremail.style.display = ' none';
-                email.style.border = '';
+                email.style.border = 'none';
+                email.style.outline = '1px solid black';
                 generalerror.style.display = 'none';
             } else {
                 erroremail.style.display = 'block';
                 email.style.border = '1px solid red';
                 isValid = false; // Set isValid to false
                 setTimeout(() => {
+                erroremail.style.display = 'none';
+                generalerror.style.display = 'none';
                     email.style.border = '';
-                }, 5000);
+                }, 2000);
             }
             return isValid;
         }
@@ -77,19 +80,34 @@
 
             if (password.value.length >= 8) {
                 errorpassword.style.display = 'none';
-                password.style.border = '';
+                password.style.border = 'none';
+                password.style.outline = '1px solid black';
                 generalerror.style.display = 'none';
             } else {
                 errorpassword.style.display = 'block';
                 password.style.border = '1px solid red';
-                isValid = false; // Set isValid to false
+                isValid = false;
                 setTimeout(() => {
+                errorpassword.style.display = 'none';
+                generalerror.style.display = 'none';
+                 // Set isValid to false
                     password.style.border = '';
-                }, 5000);
+                }, 2000);
             }
             return isValid;
         }
 
+        function rememberpassword(){
+            const password = document.querySelector('#pass-input').value;
+            const rememberMe = document.querySelector('#rememberpass').checked;
+            if (rememberMe) {
+                localStorage.setItem('rememberedPassword', password);
+                console.log('Password set successfully');  
+            } else {
+                localStorage.removeItem('rememberedPassword', password);
+                console.log('Password removed successfully');
+        }
+    }
         function login(event) {
             event.preventDefault(); 
             const isPasswordValid = strongpassword();
@@ -97,6 +115,7 @@
 
             if (isPasswordValid && isEmailValid) {
                 console.log('Form submitted successfully.');
+                window.location.href = 'Mainpage.html';
                 return true; 
             } else {
                 console.log('Form contains errors.'); // I made this for password checking instead 
