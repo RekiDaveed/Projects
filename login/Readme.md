@@ -1,1 +1,1 @@
-Basic Login page with authentication havent doen the create account part yet cus am lazy and still learning.
+Basic Login page havent doen the create account part yet cus am lazy and still learning.
