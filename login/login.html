@@ -14,12 +14,12 @@
             <br>
             <label for="validgmail" style="display: block; margin-right: 190px; margin-bottom: 3px;">Email address</label>
             <div>
-                <input id="validgmail" type="email" placeholder=" John.doe@gmail.com" style="width: 290px; height: 29px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; padding-left: 5px;">
+                <input onfocus="resetcolor()"    id="validgmail" type="email" placeholder=" John.doe@gmail.com" style="width: 290px; height: 29px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; padding-left: 5px;">
             </div>
             <br>
             <label for="pass-input" style="display: block; margin-right: 220px; margin-bottom: 3px;">Password</label>
             <div>
-                <input id="pass-input" placeholder=" 8 characters minimum" type="password" style="width: 290px; height: 29px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; outline: none; padding-left: 5px;">
+                <input onfocus="resetcolor()"   id="pass-input" placeholder=" 8 characters minimum" type="password" style="width: 290px; height: 29px; border: none; box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3); border-radius: 4px; outline: none; padding-left: 5px;">
             </div>
             <div style="text-align: start; margin-top: 2px;">
                 <input type="checkbox" onclick="showpassword()"> Show password
@@ -59,17 +59,28 @@
                 email.style.border = 'none';
                 email.style.outline = '1px solid black';
                 generalerror.style.display = 'none';
-            } else {
+            }  
+            else {
             //  erroremail.style.display = 'block';
-                email.style.border = '1px solid red';
-                isValid = false; // Set isValid to false
-                setTimeout(() => {
-                erroremail.style.display = 'none';
+                email.style.border = '1px solid red';  
                 generalerror.style.display = 'none';
-                    email.style.border = '';
-                }, 2000);
+                isValid = false;
             }
             return isValid;
+
+        }
+
+        function resetcolor() {
+            const email = document.querySelector('#validgmail');
+            const password = document.querySelector('#pass-input');
+
+            email.style.outline = '1px solid black'; 
+            email.style.border = ''; 
+            password.style.border = '';
+            password.style.outline = '1px solid black'; 
+            document.querySelector('#erroremail').style.display = 'none'; 
+            document.querySelector('#errorpassword').style.display = 'none';
+            document.querySelector('#general-error').style.display = 'none';
         }
 
         function strongpassword() {
@@ -83,18 +94,16 @@
                 password.style.border = 'none';
                 password.style.outline = '1px solid black';
                 generalerror.style.display = 'none';
-            } else {
-             //  errorpassword.style.display = 'block';
+            }
+            else {
+             // errorpassword.style.display = 'block';
                 password.style.border = '1px solid red';
-                isValid = false;
-                setTimeout(() => {
                 errorpassword.style.display = 'none';
                 generalerror.style.display = 'none';
-                 // Set isValid to false
-                    password.style.border = '';
-                }, 2000);
+                isValid = false;
             }
             return isValid;
+    
         }
 
         function rememberpassword(){
@@ -108,6 +117,7 @@
                 console.log('Password removed successfully');
         }
     }
+
         function login(event) {
             event.preventDefault(); 
             const isPasswordValid = strongpassword();

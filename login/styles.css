@@ -33,6 +33,7 @@
 
 #sign-in:hover {
     background-color: grey;
+    cursor: pointer;
 }
 
 #sign-in:active {
